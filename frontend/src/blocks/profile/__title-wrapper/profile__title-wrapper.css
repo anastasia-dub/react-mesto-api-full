@@ -1,0 +1,10 @@
+.profile__title-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__title-wrapper {
+    margin-top: 26px;
+  }
+}

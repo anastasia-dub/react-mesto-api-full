@@ -1,0 +1,9 @@
+.popup__form-inputs {
+  margin-bottom: 48px;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__form-inputs {
+    margin-bottom: 45px;
+  }
+}

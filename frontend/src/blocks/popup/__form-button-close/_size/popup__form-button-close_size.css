@@ -1,0 +1,4 @@
+.popup__form-button-close_size {
+    bottom: calc(100% + 8px);
+    left: calc(100% + 8px);
+}
