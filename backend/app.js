@@ -19,6 +19,7 @@ const app = express();
 app.use(cors({
   origin: 'http://mesto-39.nomoredomains.work',
   credentials: true,
+  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Cookie'],
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
