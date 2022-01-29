@@ -39,7 +39,7 @@ export const login = (email, password) => {
 };
 
 export const logout = () => {
-  fetch(`${BASE_URL}/signout`, {
+  return fetch(`${BASE_URL}/signout`, {
     method: 'POST',
     ...BASE_PROPS,
   })
