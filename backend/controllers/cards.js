@@ -75,8 +75,7 @@ const putCardLikeByCardId = (req, res, next) => {
 const deleteCardLikeByCardId = (req, res, next) => {
   Card.findByIdAndRemove(
     req.params.cardId,
-    { $pull: { likes: req.user._id } }, // убрать _id из массива
-    { new: true },
+    { $pull: { likes: req.user._id }, new: true }, // убрать _id из массива
   )
     .then((card) => {
       if (!card) {
