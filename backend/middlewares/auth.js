@@ -17,7 +17,7 @@ const auth = (req, res, next) => {
     next();
   } catch (err) {
     err.statusCode = 401;
-    next(err);
+    next(new AuthError('Ошибка авторизации'));
   }
 };
 

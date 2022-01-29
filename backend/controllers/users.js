@@ -95,7 +95,7 @@ const createUser = (req, res, next) => {
         if (err.name === 'ValidationError') {
           next(new ValidationError('Переданы некорректные данные'));
         }
-        if (err.name === 'MongoError' && err.code === 11000) {
+        if (err.code === 11000) {
           next(new UserExistError('Указанный email уже существует'));
         } else {
           next(err);
