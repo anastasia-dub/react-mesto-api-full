@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const dotenv = require('dotenv').config(); 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -15,6 +16,10 @@ const router = require('./routes');
 const { PORT = 3000 } = process.env;
 const app = express();
 
+app.use(cors({
+  origin: 'http://mesto-39.nomoredomains.work',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
