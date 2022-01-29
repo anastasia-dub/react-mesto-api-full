@@ -1,5 +1,4 @@
 import React from 'react';
-import cookie from 'js-cookie';
 import {
   Route, Switch, Redirect, useHistory,
 } from 'react-router-dom';
