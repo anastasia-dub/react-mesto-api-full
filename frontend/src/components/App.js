@@ -193,7 +193,7 @@ function App() {
     setIsInfoTooltipOpen(true);
   };
 
-  if (!isAuthChecked || !isLoading) {
+  if (!isAuthChecked || isLoading) {
     return null;
   }
 
