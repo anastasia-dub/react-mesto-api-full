@@ -6,6 +6,7 @@ const InvalidDataError = require('../errors/invalid-data-error');
 const ValidationError = require('../errors/validation-error');
 const UserExistError = require('../errors/validation-error');
 const { DEV_JWT_KEY } = require('../constants');
+
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 const getUsers = (req, res, next) => {
