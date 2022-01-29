@@ -75,6 +75,11 @@ const login = (req, res, next) => {
     .catch(next);
 };
 
+const logout = (req, res, next) => {
+  res.clearCookie("key");
+  res.send();
+};
+
 const createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,

@@ -172,9 +172,10 @@ function App() {
   }
 
   function handleSignOut() {
-    cookie.remove('jwt');
-    setIsLoggedIn(false);
-    history.push('/sign-in');
+    auth.logout().then(() => {
+      setIsLoggedIn(false);
+      history.push('/sign-in');
+    });
   }
 
   const handleEditAvatarClick = () => {

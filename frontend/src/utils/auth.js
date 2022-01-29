@@ -38,6 +38,14 @@ export const login = (email, password) => {
     .then(checkResponse);
 };
 
+export const logout = () => {
+  fetch(`${BASE_URL}/signout`, {
+    method: 'POST',
+    ...BASE_PROPS,
+  })
+    .then(checkResponse);
+};
+
 export const checkAuth = () => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
