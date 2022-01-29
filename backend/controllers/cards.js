@@ -88,6 +88,7 @@ const deleteCardLikeByCardId = (req, res, next) => {
       if (err.name === 'CastError') {
         next(new InvalidDataError('Переданы некорректные данные'));
       }
+      console.log(err);
       next(err);
     });
 };
