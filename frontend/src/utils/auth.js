@@ -1,4 +1,4 @@
-const BASE_URL = "http://api-mesto-39.nomoredomains.work";
+const BASE_URL = "https://api-mesto-39.nomoredomains.work";
 
 function checkResponse(res) {
   if (res.ok) {
