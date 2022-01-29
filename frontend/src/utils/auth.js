@@ -18,6 +18,7 @@ export const register = (email, password) => {
       email: email,
       password: password,
     }),
+    credentials: 'include',
   })
     .then(checkResponse)
 };
@@ -32,6 +33,7 @@ export const login = (email, password) => {
       email: email,
       password: password,
     }),
+    credentials: 'include',
   })
     .then(checkResponse)
     
@@ -44,6 +46,7 @@ export const checkToken = (jwt) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${jwt}`,
     },
+    credentials: 'include',
   })
     .then(checkResponse)
 };
