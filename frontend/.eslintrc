@@ -1,6 +1,21 @@
 {
-    "extends": "airbnb-base",
+    "extends": [
+        "airbnb-base",
+        "plugin:react/recommended"
+    ],
     "rules": {
-      "no-underscore-dangle": "off"
+        "arrow-parens": "off",
+        "no-underscore-dangle": "off",
+        "class-methods-use-this": "off",
+        "prefer-promise-reject-errors": "off",
+        "arrow-body-style": "off",
+        "import/no-named-as-default": "off",
+        "import/no-named-as-default-member": "off",
+        "no-shadow": "off",
+        "react/prop-types": "off"
+    },
+    "globals": { 
+        "document": true,
+        "fetch": true 
     }
   }

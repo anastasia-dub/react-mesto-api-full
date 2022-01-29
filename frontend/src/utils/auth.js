@@ -1,4 +1,4 @@
-const BASE_URL = "https://api-mesto-39.nomoredomains.work";
+const BASE_URL = 'https://api-mesto-39.nomoredomains.work';
 
 function checkResponse(res) {
   if (res.ok) {
@@ -9,40 +9,39 @@ function checkResponse(res) {
 
 const BASE_PROPS = {
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
   credentials: 'include',
 };
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
-    method: "POST",
+    method: 'POST',
     ...BASE_PROPS,
     body: JSON.stringify({
-      email: email,
-      password: password,
+      email,
+      password,
     }),
   })
-    .then(checkResponse)
+    .then(checkResponse);
 };
 
 export const login = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
-    method: "POST",
+    method: 'POST',
     ...BASE_PROPS,
     body: JSON.stringify({
-      email: email,
-      password: password,
+      email,
+      password,
     }),
   })
-    .then(checkResponse)
-    
+    .then(checkResponse);
 };
 
 export const checkAuth = () => {
   return fetch(`${BASE_URL}/users/me`, {
-    method: "GET",
+    method: 'GET',
     ...BASE_PROPS,
   })
-    .then(checkResponse)
+    .then(checkResponse);
 };

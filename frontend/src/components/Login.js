@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 function Login(props) {
-  const [email, setEmail] = React.useState("");
-  const [password, setpassword] = React.useState("");
+  const [email, setEmail] = React.useState('');
+  const [password, setpassword] = React.useState('');
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -17,7 +17,7 @@ function Login(props) {
   }
 
   return (
-    <>      
+    <>
       <section className="auth">
         <h2 className="auth__title">Вход</h2>
         <form className="auth__form" onSubmit={handleSubmit}>
@@ -28,7 +28,7 @@ function Login(props) {
             name="email"
             type="email"
             required
-            value={email || ""}
+            value={email || ''}
             autoComplete="off"
           ></input>
           <input
@@ -38,7 +38,7 @@ function Login(props) {
             name="password"
             type="password"
             required
-            value={password || ""}
+            value={password || ''}
             autoComplete="off"
           ></input>
 

@@ -1,7 +1,10 @@
-import React from "react";
-import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import React from 'react';
+import cookie from 'js-cookie';
+import {
+  Route, Switch, Redirect, useHistory,
+} from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
-import api from "../utils/api";
+import api from '../utils/api';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -11,11 +14,9 @@ import EditAvatarPopup from './EditAvatarPopup';
 import InfoTooltip from './InfoTooltip';
 import AddPlacePopup from './AddPlacePopup';
 import CurrentUserContext from '../contexts/CurrentUserContext';
-import Register from "./Register";
-import Login from "./Login";
-import * as auth from "../utils/auth";
-
-
+import Register from './Register';
+import Login from './Login';
+import * as auth from '../utils/auth';
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -25,43 +26,45 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [currentUser, setCurrentUser] = React.useState({
     name: '',
-    about: ''
+    about: '',
   });
   const [cards, setCards] = React.useState([]);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [email, setEmail] = React.useState("");
+  const [email, setEmail] = React.useState('');
   const history = useHistory();
 
   const [isSuccess, setIsSuccess] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isAuthChecked, setIsAuthChecked] = React.useState(false);
 
   React.useEffect(() => {
     setIsLoading(true);
 
-    api.getInitialData() 
+    api.getInitialData()
       .then(([user, cards]) => {
         setCurrentUser(user);
         setCards(cards);
       })
       .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false))
+      .finally(() => setIsLoading(false));
   }, []);
 
-  //Хук для проверки токена при каждом монтировании компонента App
+  // Хук для проверки токена при каждом монтировании компонента App
   React.useEffect(() => {
-      auth
-        .checkAuth()
-        .then((res) => {
-          setIsLoggedIn(true);
-          setEmail(res?.email);
-          history.push("/");
-        })
-        .catch((err) => {
-          if (err.status === 401) {
-            console.log("401 — Токен не передан или передан не в том формате");
-          }
-          console.log("401 — Переданный токен некорректен");
-        });
+    auth
+      .checkAuth()
+      .then((res) => {
+        setIsLoggedIn(true);
+        setEmail(res.email);
+        history.push('/');
+      })
+      .catch((err) => {
+        if (err.status === 401) {
+          console.log('401 — Токен не передан или передан не в том формате');
+        }
+        console.log('401 — Переданный токен некорректен');
+      })
+      .finally(() => setIsAuthChecked(true));
   }, [history]);
 
   const closeAllPopups = () => {
@@ -112,11 +115,11 @@ function App() {
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some(i => i === currentUser._id);
-    
+
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
-        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+        setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
       })
       .catch((err) => {
         console.log(err);
@@ -136,13 +139,13 @@ function App() {
   function handleRegisterSubmit(email, password) {
     auth
       .register(email, password)
-      .then((res) => {
+      .then(() => {
         setIsSuccess(true);
-        history.push("/sign-in");
+        history.push('/sign-in');
       })
       .catch((err) => {
         if (err.status === 400) {
-          console.log("400 - некорректно заполнено одно из полей");
+          console.log('400 - некорректно заполнено одно из полей');
         }
         setIsSuccess(false);
       })
@@ -154,25 +157,24 @@ function App() {
   function handleLoginSubmit(email, password) {
     auth
       .login(email, password)
-      .then((res) => {
-        localStorage.setItem("jwt", res.token);
+      .then(() => {
         setIsLoggedIn(true);
         setEmail(email);
-        history.push("/");
+        history.push('/');
       })
       .catch((err) => {
         if (err.status === 400) {
-          console.log("400 - не передано одно из полей");
+          console.log('400 - не передано одно из полей');
         } else if (err.status === 401) {
-          console.log("401 - пользователь с email не найден");
+          console.log('401 - пользователь с email не найден');
         }
       });
   }
 
   function handleSignOut() {
-    localStorage.removeItem("jwt");
+    cookie.remove('jwt');
     setIsLoggedIn(false);
-    history.push("/sign-in");
+    history.push('/sign-in');
   }
 
   const handleEditAvatarClick = () => {
@@ -189,6 +191,10 @@ function App() {
 
   const handleInfoTooltipClick = () => {
     setIsInfoTooltipOpen(true);
+  };
+
+  if (!isAuthChecked || !isLoading) {
+    return null;
   }
 
   return (
@@ -210,7 +216,7 @@ function App() {
             onCardDelete={handleCardDelete}
             component={Main}
           />
-          
+
           <Route path="/sign-in">
             <Login onLogin={handleLoginSubmit} />
           </Route>

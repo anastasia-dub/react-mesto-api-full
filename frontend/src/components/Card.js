@@ -1,7 +1,9 @@
-import { useContext } from "react";
-import CurrentUserContext from "../contexts/CurrentUserContext";
+import React, { useContext } from 'react';
+import CurrentUserContext from '../contexts/CurrentUserContext';
 
-function Card({ data: { name, link, likes }, data, onClick, onCardLike, onCardDelete }) {
+function Card({
+  data: { name, link, likes }, data, onClick, onCardLike, onCardDelete,
+}) {
   const currentUser = useContext(CurrentUserContext);
 
   const handleClick = () => {
@@ -29,8 +31,8 @@ function Card({ data: { name, link, likes }, data, onClick, onCardLike, onCardDe
 
   return (
     <div className="card">
-      <button 
-        type="button" 
+      <button
+        type="button"
         className={cardDeleteButtonClassName}
         onClick={handleCardDelete}
       />
@@ -42,9 +44,9 @@ function Card({ data: { name, link, likes }, data, onClick, onCardLike, onCardDe
       <div className="card__container">
         <h2 className="card__text">{name}</h2>
         <div className="card__like-container">
-          <button  
-          type="button" 
-          className={cardLikeButtonClassName} 
+          <button
+          type="button"
+          className={cardLikeButtonClassName}
           onClick={handleLikeClick}
           />
           <span className="card__like-count">{likes.length}</span>

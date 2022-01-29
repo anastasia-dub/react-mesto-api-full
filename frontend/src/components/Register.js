@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Register(props) {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -28,7 +28,7 @@ function Register(props) {
           name="email"
           type="email"
           required
-          value={email || ""}
+          value={email || ''}
           onChange={handleEmailChange}
           autoComplete="off"
         ></input>
@@ -38,7 +38,7 @@ function Register(props) {
           name="password"
           type="password"
           required
-          value={password || ""}
+          value={password || ''}
           onChange={handlePasswordChange}
           autoComplete="off"
         ></input>

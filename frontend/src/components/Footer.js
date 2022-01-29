@@ -1,9 +1,11 @@
+import React from 'react';
+
 function Footer() {
-    return (
+  return (
         <footer className="footer">
             <p className="footer__copyright">&copy;2021 Анастасия Дубковецкая</p>
         </footer>
-    );
+  );
 }
 
 export default Footer;

@@ -1,20 +1,20 @@
-import { useRef } from 'react';
-import PopupWithForm from "./PopupWithForm";
+import React, { useRef } from 'react';
+import PopupWithForm from './PopupWithForm';
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
-    const nameInputRef = useRef();
-    const linkInputRef = useRef();
+  const nameInputRef = useRef();
+  const linkInputRef = useRef();
 
-    function handleAddPlaceSubmit(e) {
-        e.preventDefault();
+  function handleAddPlaceSubmit(e) {
+    e.preventDefault();
 
-        onAddPlace({
-            name: nameInputRef.current.value,
-            link: linkInputRef.current.value
-        });
-    }
+    onAddPlace({
+      name: nameInputRef.current.value,
+      link: linkInputRef.current.value,
+    });
+  }
 
-    return (
+  return (
         <PopupWithForm
             name="add-card"
             title="Новое место"
@@ -34,7 +34,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
                 </div>
             </div>
         </PopupWithForm>
-    )
+  );
 }
 
 export default AddPlacePopup;

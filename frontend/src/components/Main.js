@@ -1,12 +1,19 @@
-import { useEffect, useState, useContext } from "react";
-import api from "../utils/api";
-import Card from "./Card";
-import CurrentUserContext from "../contexts/CurrentUserContext";
+import React, { useContext } from 'react';
+import Card from './Card';
+import CurrentUserContext from '../contexts/CurrentUserContext';
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onCardLike, onCardDelete }) {
-    const currentUser = useContext(CurrentUserContext);
+function Main({
+  onEditProfile,
+  onAddPlace,
+  onEditAvatar,
+  onCardClick,
+  cards,
+  onCardLike,
+  onCardDelete,
+}) {
+  const currentUser = useContext(CurrentUserContext);
 
-    return (
+  return (
         <main className="content">
             <section className="profile">
                 <div className="profile__avatar-container">
@@ -50,8 +57,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onC
                 ))}
             </section>
         </main>
-    );
-
+  );
 }
 
 export default Main;

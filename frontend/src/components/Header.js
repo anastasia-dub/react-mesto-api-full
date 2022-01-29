@@ -1,9 +1,9 @@
+import React from 'react';
+import { Switch, Route, Link } from 'react-router-dom';
 import logo from '../images/logo.svg';
-import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
 
 function Header(props) {
-    return (
+  return (
         <header className="header">
             <img className="logo header__logo" src={logo} alt="Логотип" />
             <Switch>
@@ -25,7 +25,7 @@ function Header(props) {
                 </Route>
             </Switch>
         </header>
-    );
+  );
 }
 
 export default Header;
