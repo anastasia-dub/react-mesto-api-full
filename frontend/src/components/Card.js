@@ -16,18 +16,18 @@ function Card({ data: { name, link, likes }, data, onClick, onCardLike, onCardDe
     onCardDelete(data);
   };
 
-  const isOwn = data.owner._id === currentUser._id;
-
+  const isOwn = data.owner === currentUser._id;
+console.log(isOwn);
   const cardDeleteButtonClassName = (
     `card__remove ${isOwn ? 'card__remove_visible' : 'card__remove_hidden'}`
   );
 
   // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
   const isLiked = data.likes.some(i => i._id === currentUser._id);
-
+  console.log(isLiked);
   // Создаём переменную, которую после зададим в `className` для кнопки лайка
   const cardLikeButtonClassName = `card__like ${isLiked ? 'card__like_active' : ''}`;
-
+  console.log(cardLikeButtonClassName);
   return (
     <div className="card">
       <button 
