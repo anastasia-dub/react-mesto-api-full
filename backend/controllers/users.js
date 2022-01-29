@@ -5,7 +5,8 @@ const NotFoundError = require('../errors/not-found-error');
 const InvalidDataError = require('../errors/invalid-data-error');
 const ValidationError = require('../errors/validation-error');
 const UserExistError = require('../errors/validation-error');
-const { SECRET_KEY } = require('../constants');
+const { DEV_JWT_KEY } = require('../constants');
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const getUsers = (req, res, next) => {
   User.find({})
@@ -60,7 +61,7 @@ const login = (req, res, next) => {
           return Promise.reject(err);
         }
         // аутентификация успешна
-        const token = jwt.sign({ _id: user._id }, SECRET_KEY);
+        const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : DEV_JWT_KEY);
         res.cookie('jwt', token, {
           maxAge: 3600000 * 24 * 7,
           sameSite: true,

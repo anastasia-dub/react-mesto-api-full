@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv').config(); 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi, errors: celebrateErrors } = require('celebrate');
@@ -18,6 +19,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(requestLogger); // подключаем логгер запросов
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+}); 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
