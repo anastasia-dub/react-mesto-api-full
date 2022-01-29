@@ -49,14 +49,11 @@ function App() {
 
   //Хук для проверки токена при каждом монтировании компонента App
   React.useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-    //проверим существует ли токен в хранилище браузера localStorage
-    if (jwt) {
       auth
-        .checkToken(jwt)
+        .checkAuth()
         .then((res) => {
           setIsLoggedIn(true);
-          setEmail(res.data.email);
+          setEmail(res?.email);
           history.push("/");
         })
         .catch((err) => {
@@ -65,7 +62,6 @@ function App() {
           }
           console.log("401 — Переданный токен некорректен");
         });
-    }
   }, [history]);
 
   const closeAllPopups = () => {

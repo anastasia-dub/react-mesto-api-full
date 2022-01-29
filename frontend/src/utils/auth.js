@@ -7,18 +7,21 @@ function checkResponse(res) {
   return Promise.reject(`${res.status}`);
 }
 
+const BASE_PROPS = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+  credentials: 'include',
+};
+
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
+    ...BASE_PROPS,
     body: JSON.stringify({
       email: email,
       password: password,
     }),
-    credentials: 'include',
   })
     .then(checkResponse)
 };
@@ -26,26 +29,20 @@ export const register = (email, password) => {
 export const login = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    ...BASE_PROPS,
     body: JSON.stringify({
       email: email,
       password: password,
     }),
-    credentials: 'include',
   })
     .then(checkResponse)
     
 };
 
-export const checkToken = (jwt) => {
+export const checkAuth = () => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: 'include',
+    ...BASE_PROPS,
   })
     .then(checkResponse)
 };
