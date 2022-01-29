@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 const errors = (err, req, res, next) => {
   const { statusCode = 500, message } = err;
-
+  console.log(err);
   return res
     .status(statusCode)
     .send({
