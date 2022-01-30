@@ -5,7 +5,7 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi, errors: celebrateErrors } = require('celebrate');
-const { login, createUser } = require('./controllers/users');
+const { login, createUser, logout } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const errors = require('./middlewares/errors');
 const { URL_REGEXP } = require('./constants');
@@ -46,6 +46,7 @@ app.post('/signup', celebrate({
     password: Joi.string().required().min(2),
   }),
 }), createUser);
+app.post('/signout', logout);
 app.use(auth);
 
 app.use(router);
