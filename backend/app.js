@@ -46,9 +46,8 @@ app.post('/signup', celebrate({
     password: Joi.string().required().min(2),
   }),
 }), createUser);
-app.post('/signout', logout);
 app.use(auth);
-
+app.post('/signout', logout);
 app.use(router);
 
 app.use(errorLogger);

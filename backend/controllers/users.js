@@ -75,8 +75,8 @@ const login = (req, res, next) => {
     .catch(next);
 };
 
-const logout = (req, res, next) => {
-  res.clearCookie("key");
+const logout = (req, res) => {
+  res.clearCookie('jwt');
   res.send();
 };
 
@@ -156,5 +156,6 @@ module.exports = {
   updateUserInformation,
   updateUserAvatar,
   login,
+  logout,
   me,
 };
