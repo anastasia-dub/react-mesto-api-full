@@ -37,16 +37,17 @@ function App() {
   const [isAuthChecked, setIsAuthChecked] = React.useState(false);
 
   React.useEffect(() => {
-    setIsLoading(true);
+    if (currentUser) {
+      setIsLoading(true);
 
-    api.getInitialData()
-      .then(([user, cards]) => {
-        setCurrentUser(user);
-        setCards(cards);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false));
-  }, []);
+      api.getCardList()
+        .then((cards) => {
+          setCards(cards);
+        })
+        .catch((err) => console.log(err))
+        .finally(() => setIsLoading(false));
+    }
+  }, [currentUser]);
 
   // Хук для проверки токена при каждом монтировании компонента App
   React.useEffect(() => {
@@ -54,6 +55,7 @@ function App() {
       .checkAuth()
       .then((res) => {
         setIsLoggedIn(true);
+        setCurrentUser(res);
         setEmail(res.email);
         history.push('/');
       })
